@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Northumbria University — Welcome</title>
+
+<!-- Poppins font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --blue-600:#0b63c6;
+    --bg:#f6f8fb;
+    --muted:#6b7788;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:'Poppins',system-ui,Segoe UI,Roboto,Helvetica,Arial;background:var(--bg);color:#0b1630;overflow-x:hidden}
+  header{
+    position:fixed;top:12px;left:12px;right:12px;z-index:60;display:flex;align-items:center;justify-content:space-between;padding:10px 16px;border-radius:12px;
+    background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));backdrop-filter:blur(6px);
+    box-shadow:0 6px 24px rgba(5,20,48,0.08)
+  }
+      
+  .logo{width:60px;height:60px;border-radius:50px;background:linear-gradient(135deg,var(--blue-600),#2b8be6);display:flex;align-items:center;justify-content:center;color:white;font-weight:700}
+  .brand-circle {
+    width: 60px;
+    height: 60px;
+    border-radius: 40%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+  }
+
+  .brand-circle img {
+    max-width: 110%;
+    max-height: 110%;
+    object-fit: contain;
+  }
+
+  nav{display:flex;gap:10px;align-items:center}
+  .nav-btn{background:transparent;border:0;padding:8px 12px;border-radius:10px;font-weight:600;cursor:pointer;color:var(--muted)}
+  .nav-btn.primary{background:linear-gradient(90deg,var(--blue-600),#2b8be6);color:#fff;box-shadow:0 8px 28px rgba(11,99,198,0.12)}
+  .nav-btn:hover{transform:translateY(-3px)}
+  /* HERO / SLIDER */
+  .hero{position:relative;width:100%;height:500px;overflow:hidden;}
+  .slides-wrap{position:absolute;inset:0;overflow:hidden}
+  .slides{display:flex;height:100%;transition:transform 900ms cubic-bezier(.2,.9,.2,1);will-change:transform}
+  .slide{min-width:100%;height:100%;background-size:cover;background-position:center;position:relative;flex-shrink:0}
+  .slide-fallback{display:flex;align-items:center;justify-content:center;height:100%;background:linear-gradient(135deg,#e6f0ff,#dbeafe)}
+  .overlay{position:absolute;inset:0;background:linear-gradient(180deg, rgba(2,6,23,0.18) 0%, rgba(2,6,23,0.36) 60%);pointer-events:none}
+  .hero-inner{position:relative;z-index:20;max-width:1200px;padding:28px;width:100%;display:flex;align-items:center;justify-content:space-between;gap:18px}
+  .hero-left{flex:1;color:#fff;padding:48px 24px}
+  .kicker{display:inline-block;background:rgba(255,255,255,0.08);padding:8px 12px;border-radius:999px;margin-bottom:18px;font-weight:900}
+  h1{font-size:clamp(18px,2vw,30px);margin:0 0 14px;line-height:1.05;opacity:0;transform:translateY(8px);animation:fadeUp .8s forwards .35s}
+  p.lead{margin:0 0 22px;color:rgba(255,255,255,0.92);opacity:0;transform:translateY(8px);animation:fadeUp .8s forwards .55s}
+  .cta-group{display:flex;gap:10px;align-items:center;opacity:0;transform:translateY(8px);animation:fadeUp .8s forwards .75s}
+  .btn{padding:12px 16px;border-radius:12px;border:0;font-weight:700;cursor:pointer}
+  .btn.primary{background:linear-gradient(90deg,var(--blue-600),#2b8be6);color:#fff}
+  .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.12);color:white}
+  .scroll-down{position:absolute;left:50%;transform:translateX(-50%);bottom:28px;z-index:30;width:36px;height:60px;border-radius:24px;border:2px solid rgba(255,255,255,0.86);display:flex;align-items:flex-start;justify-content:center;padding:6px;opacity:0.95}
+  .dot{width:8px;height:8px;border-radius:50%;background:white;animation:down 1.6s infinite}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}} @keyframes down{0%{transform:translateY(0)}50%{transform:translateY(8px)}100%{transform:translateY(0)}}
+  .about-section {
+  padding: 80px 10%;
+  background: #f5f9ff;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #003366;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.about-text {
+  font-size: 1.05rem;
+  line-height: 1.9;
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto 40px;
+  color: #333;
+  animation: fadeIn 1.4s ease-in-out;
+}
+
+.about-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.about-card {
+  background: #ffffff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  transition: transform .3s ease, box-shadow .3s ease;
+  animation: slideUp .9s ease forwards;
+}
+
+.about-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 26px rgba(0,0,0,0.15);
+}
+
+.about-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+.caption {
+  padding: 15px;
+  font-size: 0.95rem;
+  text-align: center;
+  background: #fff;
+  color: #003366;
+  font-weight: 600;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+  /* SECTIONS */
+  main{position:relative;z-index:1}
+  section{padding:72px 20px}
+  .container{max-width:1200px;margin:0 auto}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .card{background:rgba(255,255,255,0.04);padding:22px;border-radius:14px;box-shadow:0 10px 30px rgba(9,30,66,0.06);transform:translateY(18px);opacity:0;animation:cardIn .6s forwards}
+  .card:nth-child(1){animation-delay:.14s}.card:nth-child(2){animation-delay:.24s}.card:nth-child(3){animation-delay:.34s}
+  .card h4{margin:10px 0 6px}
+  .card p{margin:0;color:var(--muted);font-size:14px}
+  footer{background:#07112a;color:rgba(255,255,255,0.92);padding:36px 20px}
+  @media(max-width:980px){.hero-inner{flex-direction:column;align-items:flex-start;padding:36px}.cards{grid-template-columns:1fr}.nav-btn{padding:8px 10px}}
+  @media(max-width:520px){header{padding:8px 10px}.logo{width:38px;height:38px}.kicker{display:none}}
+</style>
+</head>
+<body>
+
+<header role="banner" aria-label="Main header">
+  <div class="brand" style="gap:12px;display:flex;align-items:center">
+    <div class="brand-circle">
+    <img src="logo.png" alt="Northumbria University Logo">
+  </div>
+    <div style="line-height:1">
+      <div style="font-weight:700">NORTHUMBRIA UNIVERSITY</div>
+      <div style="font-size:12px;color:var(--muted)">Newcastle — Inspiring Minds</div>
+    </div>
+  </div>
+
+  <nav role="navigation" aria-label="Main navigation">
+    <!-- KEEP mental-health nav here (points to external/other file you have) -->
+    <button class="nav-btn primary" onclick="location.href='mental.html'">Mental Health Support</button>
+    <button class="nav-btn" onclick="document.getElementById('admissions').scrollIntoView({behavior:'smooth'})">Admissions &amp; Programs</button>
+    <button class="nav-btn" onclick="document.getElementById('student-services').scrollIntoView({behavior:'smooth'})">Student Services Portal</button>
+  </nav>
+</header>
+
+<!-- HERO with slider -->
+<section class="hero" aria-label="Hero">
+  <div class="slides-wrap" aria-hidden="true">
+    <div id="slides" class="slides" role="list">
+      <!-- Add/replace images below. Prefer local files (img/slide1.jpg) for speed.
+           If image fails to load, JS will replace that slide content with a fallback gradient. -->
+      <div class="slide" role="listitem" style="background-image:url('main.jpg');"></div>
+         </div>
+  </div>
+
+  <div class="overlay" aria-hidden="true"></div>
+
+  <div class="hero-inner container" role="region" aria-label="Welcome message">
+    <div class="hero-left">
+      <div class="kicker">Welcome</div>
+      <h1>Welcome to Northumbria University, Newcastle — Inspiring Minds, Shaping Futures.</h1>
+      <p class="lead">Explore our programmes, facilities, and student services. (Mental Health Support is available via the top navigation).</p>
+
+      <div class="cta-group" role="group" aria-label="primary actions">
+        <button class="btn primary" onclick="href='https://www.northumbria.ac.uk/study-at-northumbria/admissions/apply-now/'">Explore Admissions</button>
+        <button class="btn ghost" onclick="href='https://www.northumbria.ac.uk/study-at-northumbria/admissions/apply-now/'">Student Portal</button>
+      </div>
+    </div>
+    <!-- Optional right card -->
+    <div style="flex-basis:360px;display:flex;align-items:center;justify-content:center">
+      <div style="width:100%;max-width:320px;padding:16px;border-radius:12px;background:rgba(255,255,255,0.04);box-shadow:0 10px 30px rgba(2,6,23,0.18)">
+        <strong style="color:white">Open Days & Admissions</strong>
+        <p style="color:rgba(255,255,255,0.9);margin:10px 0 0;font-size:13px">Book a campus visit or join a live webinar to learn more.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-down" title="Scroll to learn more" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">
+    <div class="dot"></div>
+  </div>
+</section>
+
+<main>
+  <section id="about" class="about-section">
+  <div class="about-content">
+    <h2 class="section-title">About Northumbria University</h2>
+    <p class="about-text">
+      Northumbria University is a research-intensive institution committed to unlocking potential for all—
+      transforming lives regionally, nationally, and globally. Named 
+      <strong>UK University of the Year 2022 (Times Higher Education)</strong> 
+      and 
+      <strong>Modern University of the Year 2025 (The Times & The Sunday Times)</strong>,
+      Northumbria is located in Newcastle upon Tyne with an additional London campus.
+      <br><br>
+      Originating from Rutherford College in 1880, Northumbria is ranked among the UK’s 
+      <strong>top 25 for research power and graduate employability</strong>. 
+      The university collaborates with world-leading employers such as Nike, IBM, and the NHS, and is recognised as 
+      one of the UK’s top institutions for graduate start-ups.
+      <br><br>
+      With students from over <strong>137 countries</strong> and extensive global partnerships,
+      Northumbria continues to drive innovation, entrepreneurship, and world-changing academic excellence.
+    </p>
+
+    <!-- IMAGE CARDS -->
+    <div class="about-gallery">
+      <div class="about-card">
+        <img src="https://images.pexels.com/photos/256490/pexels-photo-256490.jpeg" alt="Campus View">
+        <div class="caption">Beautiful Newcastle Campus Environment</div>
+      </div>
+
+      <div class="about-card">
+        <img src="https://images.pexels.com/photos/1181371/pexels-photo-1181371.jpeg" alt="Students">
+        <div class="caption">A Globally Diverse Student Community</div>
+      </div>
+
+      <div class="about-card">
+        <img src="https://images.pexels.com/photos/3184328/pexels-photo-3184328.jpeg" alt="Research Lab">
+        <div class="caption">World-Class Research & Innovation Facilities</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <section id="admissions" style="background:#f9fafc;padding:90px 20px">
+  <div class="container" style="max-width:1200px;margin:auto">
+
+    <h2 style="font-size:32px;margin-bottom:12px;color:#0b1630">Admissions & Programs</h2>
+    <p style="color:#5c6370;max-width:750px;margin-bottom:40px">
+      Discover undergraduate and postgraduate degree programmes.  
+      Search courses, check entry requirements, and begin your application journey.
+    </p>
+
+    <!-- APPLY / LOGIN CARDS -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:22px">
+
+      <div style="background:white;padding:24px;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,0.05)">
+        <h3 style="margin:0 0 10px;color:#0b1630">Undergraduate Admissions</h3>
+        <p style="color:#5c6370;font-size:14px">Start your academic journey with our globally recognised programs.</p>
+        <button onclick="location.href='https://www.northumbria.ac.uk/study-at-northumbria/admissions/apply-now/'" 
+                style="margin-top:14px;padding:12px 16px;background:#0b63c6;color:white;border:0;border-radius:10px;cursor:pointer;font-weight:600;width:100%">
+          Apply Now
+        </button>
+      </div>
+
+      <div style="background:white;padding:24px;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,0.05)">
+        <h3 style="margin:0 0 10px;color:#0b1630">Postgraduate Admissions</h3>
+        <p style="color:#5c6370;font-size:14px">Advance your career with specialised master’s and research degrees.</p>
+        <button onclick="location.href='https://www.northumbria.ac.uk/study-at-northumbria/admissions/apply-now/'" 
+                style="margin-top:14px;padding:12px 16px;background:#0b63c6;color:white;border:0;border-radius:10px;cursor:pointer;font-weight:600;width:100%">
+          Apply for Postgraduate
+        </button>
+      </div>
+
+      <div style="background:white;padding:24px;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,0.05)">
+        <h3 style="margin:0 0 10px;color:#0b1630">International Students</h3>
+        <p style="color:#5c6370;font-size:14px">Join a multicultural community of learners from 130+ countries.</p>
+        <button onclick="location.href='https://www.northumbria.ac.uk/study-at-northumbria/admissions/apply-now/'" 
+                style="margin-top:14px;padding:12px 16px;background:#0b63c6;color:white;border:0;border-radius:10px;cursor:pointer;font-weight:600;width:100%">
+          Explore International Pathway
+        </button>
+      </div>
+
+    </div>
+
+    <!-- PROGRAM SEARCH -->
+    <div style="margin-top:50px;background:white;padding:26px;border-radius:16px;box-shadow:0 10px 30px rgba(0,0,0,0.05)">
+      <h3 style="margin-top:0;color:#0b1630">Search for a Program</h3>
+      <input type="text" placeholder="Search course… e.g., Computer Science, Nursing, Law" 
+             style="width:100%;padding:14px;border:1px solid #dce1e8;border-radius:10px;font-size:15px;margin-top:10px">
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="container" style="display:flex;gap:20px;flex-wrap:wrap;align-items:flex-start">
+    <div style="flex:1;min-width:200px">
+      <strong>Northumbria University</strong>
+      <p style="margin-top:8px;color:rgba(255,255,255,0.8)">Ellison Place, Newcastle upon Tyne NE1 8ST — UK</p>
+    </div>
+    <div style="flex:1;min-width:200px">
+      <strong>Quick links</strong>
+      <ul style="list-style:none;padding:0;margin:8px 0 0;color:rgba(255,255,255,0.85)">
+        <li><a href="https://www.northumbria.ac.uk/study-at-northumbria/admissions/apply-now/" style="color:inherit">Admissions</a></li>
+        <li><a href="#student-services" style="color:inherit">Student Portal</a></li>
+      </ul>
+    </div>
+    <div style="flex:1;min-width:200px">
+      <strong>Contact</strong>
+      <p style="margin-top:8px;color:rgba(255,255,255,0.85)">Tel: +44 (0)191 215 6300</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+<script>
+// ===== HERO SLIDER (Horizontal Slide) =====
+const slidesContainer = document.getElementById('slides');
+const slides = Array.from(document.querySelectorAll('.slide'));
+let currentIndex = 0;
+const intervalTime = 5000; // 5 seconds per slide
+let timer = null;
+
+// Set up initial styles for sliding
+slidesContainer.style.display = 'flex';
+slidesContainer.style.width = `${slides.length * 100}%`;
+slidesContainer.style.transition = 'transform 1s ease-in-out';
+slides.forEach(slide => {
+  slide.style.flex = '0 0 100%'; // Each slide takes full width
+  slide.style.transition = 'opacity 0.5s';
+});
+
+// Show a specific slide
+function showSlide(index) {
+  currentIndex = index;
+  slidesContainer.style.transform = `translateX(-${index * 100}%)`;
+}
+
+// Move to the next slide
+function nextSlide() {
+  showSlide((currentIndex + 1) % slides.length);
+}
+
+// Auto-play slides
+function startAutoPlay() {
+  if(timer) clearInterval(timer);
+  timer = setInterval(nextSlide, intervalTime);
+}
+
+// Stop auto-play
+function stopAutoPlay() {
+  if(timer) clearInterval(timer);
+  timer = null;
+}
+
+// Pause slider when hovering
+slidesContainer.addEventListener('mouseenter', stopAutoPlay);
+slidesContainer.addEventListener('mouseleave', startAutoPlay);
+
+// Preload images and handle missing images
+slides.forEach(slide => {
+  const style = slide.getAttribute('style') || '';
+  const match = style.match(/url\(['"]?(.*?)['"]?\)/);
+  if(!match) return;
+  const url = match[1];
+  const img = new Image();
+  img.src = url;
+  img.onerror = () => {
+    console.warn('Slide image failed to load:', url);
+    slide.style.backgroundImage = 'none';
+    slide.innerHTML = `
+      <div class="slide-fallback" style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#e0e7ff;">
+        <div style="text-align:center;">
+          <h2 style="margin-bottom:6px;color:#08306b;">Northumbria University</h2>
+          <p style="margin:0;color:#124;">Welcome</p>
+        </div>
+      </div>
+    `;
+  };
+});
+
+// Initialize slider
+showSlide(0);
+startAutoPlay();
+</script>
+
+
+</body>
+</html>
